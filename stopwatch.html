@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch</title>
+</head>
+<body>
+    <button onclick="window.location.href='index.html';" id="home">Home</button>
+    <h1 id="title">Stopwatch</h1>
+    <h1 id="count"></h1>
+    <div id="buttons">
+      <button id="reset">Reset</button>
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+    </div>
+    
+</body>
+<script>
+
+const strtbtn = document.getElementById('start');
+const resbtn = document.getElementById('reset');
+const stpbtn = document.getElementById('stop');
+const display = document.getElementById('count');
+
+display.textContent = "00:00:00";
+
+let timer = null;
+let seconds = 0, minutes = 0, hours = 0;
+
+// Format time (00:00:00)
+function formatTime() {
+  let s = seconds < 10 ? "0" + seconds : seconds;
+  let m = minutes < 10 ? "0" + minutes : minutes;
+  let h = hours < 10 ? "0" + hours : hours;
+  return `${h}:${m}:${s}`;
+}
+
+// Update time every second
+function updateTime() {
+  seconds++;
+  if (seconds >= 60) {
+    seconds = 0;
+    minutes++;
+    if (minutes >= 60) {
+      minutes = 0;
+      hours++;
+    }
+  }
+  display.textContent = formatTime();
+}
+
+// Start
+strtbtn.onclick = function () {
+  if (!timer) {
+    timer = setInterval(updateTime, 1000);
+  }
+};
+
+// Stop
+stpbtn.onclick = function () {
+  clearInterval(timer);
+  timer = null;
+};
+
+// Reset
+resbtn.onclick = function () {
+  clearInterval(timer);
+  timer = null;
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
+  display.textContent = "00:00:00";
+};
+</script>
+
+
+
+<style>
+  #title{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: yellow;
+  }
+  #count{
+    text-align: center;
+    color: yellow;
+    font-size: 6em ;
+  }
+  #buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  }
+  button {
+  font-size: 1.5rem;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  background-color: yellow;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</html>

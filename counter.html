@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter</title>
+</head>
+<body>
+    <button onclick="window.location.href='index.html';" id="home">Home</button>
+    <h1 id="title">Tally Counter</h1>
+    <h1 id="count"></h1>
+    <div id="buttons">
+      <button id="decrease">-1</button>
+      <button id="reset">Reset</button>
+      <button id="increase">+1</button>
+    </div>
+    
+</body>
+<script>
+  const countdisp = document.getElementById("count");
+  const decbtn = document.getElementById("decrease");
+  const resbtn = document.getElementById("reset");
+  const incbtn = document.getElementById("increase");
+  let count = 0
+  countdisp.textContent = count
+  incbtn.onclick = function(){
+    count += 1 
+    countdisp.textContent = count
+  }
+  decbtn.onclick = function(){
+    count -= 1 
+    countdisp.textContent = count
+  }
+  resbtn.onclick = function(){
+    count = 0 
+    countdisp.textContent = count
+  }
+</script>
+<style>
+  #title{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(255, 160, 37);
+  }
+  #count{
+    text-align: center;
+    color: rgb(255, 160, 37);
+    font-size: 6em ;
+  }
+  #buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  }
+  button {
+  font-size: 1.5rem;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  background-color: rgb(255, 160, 37);
+  color: white;
+  cursor: pointer;
+}
+</style>
+</html>

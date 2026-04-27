@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RandNumGen</title>
+</head>
+<body>
+  <button onclick="window.location.href='index.html';" id="home">Home</button>
+  <h1 id="title">
+    Random Number Generator
+  </h1>
+  <label id="minLabel">Enter minimum value</label>
+    <input id="min">
+  <br>
+  <label id="maxLabel">Enter maximum value</label>
+    <input id="max">
+  <br>
+  <br>
+  <button id="submit">Generate</button>
+  <h1 id="MyH1"></h1>
+
+  <style>
+      #home{
+        background-color: rgb(0, 255, 98);
+      }
+      body{
+        background-color: rgb(255, 255, 255);
+      }
+      #MyH1{
+        text-align: center;
+        color: rgb(0, 255, 98);
+        font-family: 'Times', 'Times New Roman', 'Georgia', serif;
+        font-size: 2.5em;
+      }
+      #title{
+        text-align: center;
+        color: rgb(0, 225, 98);
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 2.5em;
+      }
+      #minLabel{
+        color: rgb(0, 255, 98);
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 1.5em;
+        font-weight: bold;
+        position: relative;
+        left: 400px;
+      }
+      #min{
+        position: relative;
+        left: 400px;
+      }
+      #maxLabel{
+        color: rgb(0, 225, 98);
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 1.5em;
+        font-weight: bold;
+        position: relative;
+        left: 400px;
+      }
+      #max{
+        position: relative;
+        left: 400px;
+      }
+      #submit{
+        align-items: center;
+        background-color: rgb(0, 225, 98);
+        display: block;
+        margin: 0 auto;
+        width: 200px;
+        font-size: 1.5em;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+      }
+  </style>
+
+  <script>
+    const button = document.getElementById("submit");
+    const display = document.getElementById("MyH1");
+
+    button.onclick = function(){
+      let minNum = document.getElementById("min").value;
+      minNum = Number(minNum)
+      let maxNum = document.getElementById("max").value;
+      maxNum = Number(maxNum)
+      const randnum = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+      display.textContent = `Your random number is ${randnum}.`;
+    
+    }
+  </script>
+</body>
+</html>

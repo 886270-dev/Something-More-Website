@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer</title>
+</head>
+<body>
+    <button onclick="window.location.href='index.html';" id="home">Home</button>
+    <h1 id="title">Timer</h1>
+    <h1 id="count"></h1>
+    <div id="buttons">
+      <button id="reset">Reset</button>
+      <button id="start">Set/Start</button>
+      <button id="stop">Stop</button>
+    </div>
+    
+</body>
+<script>
+const strtbtn = document.getElementById('start');
+const resbtn = document.getElementById('reset');
+const stpbtn = document.getElementById('stop');
+const display = document.getElementById('count');
+
+let timer = null;
+let totalSeconds = 0;
+
+// format time (mm:ss)
+function formatTime(sec) {
+  let m = Math.floor(sec / 60);
+  let s = sec % 60;
+  m = m < 10 ? "0" + m : m;
+  s = s < 10 ? "0" + s : s;
+  return `${m}:${s}`;
+}
+
+// update countdown
+function updateTime() {
+  if (totalSeconds > 0) {
+    totalSeconds--;
+    display.textContent = formatTime(totalSeconds);
+  } else {
+    clearInterval(timer);
+    timer = null;
+  }
+}
+
+// start
+strtbtn.onclick = function () {
+  if (!timer) {
+    if (totalSeconds === 0) {
+      let input = prompt("Enter time in seconds:");
+      totalSeconds = parseInt(input) || 0;
+      display.textContent = formatTime(totalSeconds);
+    }
+    if (totalSeconds > 0) {
+      timer = setInterval(updateTime, 1000);
+    }
+  }
+};
+
+// stop
+stpbtn.onclick = function () {
+  clearInterval(timer);
+  timer = null;
+};
+
+// reset
+resbtn.onclick = function () {
+  clearInterval(timer);
+  timer = null;
+  totalSeconds = 0;
+  display.textContent = "00:00";
+};
+
+// initial display
+display.textContent = "00:00";
+</script>
+
+
+
+<style>
+  #title{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(212, 60, 0);
+  }
+  #count{
+    text-align: center;
+    color: rgb(212, 60, 0);
+    font-size: 6em ;
+  }
+  #buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  }
+  button {
+  font-size: 1.5rem;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  background-color: rgb(212, 60, 0);
+  color: white;
+  cursor: pointer;
+}
+</style>
+</html>
